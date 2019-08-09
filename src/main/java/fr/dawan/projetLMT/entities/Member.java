@@ -2,6 +2,7 @@ package fr.dawan.projetLMT.entities;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -63,11 +64,13 @@ public class Member {
 	@ManyToMany
 	private List<Genre> genres;
 	
-	@OneToMany
+	@OneToMany(mappedBy="sender" ,cascade=CascadeType.ALL)
 	private List<Message> sentMessages;
 	
-	@OneToMany
+	@OneToMany(mappedBy="receiver",cascade=CascadeType.ALL)
 	private List<Message> recievedMessages;
+	
+	
 	
 	
 }
