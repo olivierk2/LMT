@@ -1,5 +1,6 @@
 package fr.dawan.projetLMT.entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
@@ -13,7 +14,12 @@ import javax.persistence.Version;
 
 @Entity
 @Table(name="t_message")
-public class Message {
+public class Message implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
