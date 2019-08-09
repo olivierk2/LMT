@@ -1,9 +1,37 @@
 package fr.dawan.projetLMT.entities;
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Version;
+@Entity
+@Table(name="t_member")
 public class Member {
-
+	
+	 public enum sex{			  
+		    m,
+		    f,
+		    other
+		  }
+	 public enum level{
+			beginner,
+			intermediate,
+			advanced,
+			professional
+	}
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@Version
+	private int version;
 	
 	private String firstname;
 		
@@ -11,23 +39,13 @@ public class Member {
 	
 	private LocalDate birthday;
 	
-	 private enum sex {			  
-			    m,
-			    f,
-			    other
-			  }
-	
+	 private sex sexMember ;
 	
 	private String email;
 	
 	private String password;
 	
-	private enum level{
-			beginner,
-			intermediate,
-			advanced,
-			professional
-	};
+	private level levelmMember;
 	
 	private String adress;
 	
@@ -39,6 +57,17 @@ public class Member {
 	
 	private String resume;
 	
-	private int version;
+	@ManyToMany
+	private List<Instrument> instruments;
+	
+	@ManyToMany
+	private List<Genre> genres;
+	
+	@OneToMany
+	private List<Message> sentMessages;
+	
+	@OneToMany
+	private List<Message> recievedMessages;
+	
 	
 }
