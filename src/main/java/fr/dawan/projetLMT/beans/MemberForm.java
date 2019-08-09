@@ -1,91 +1,63 @@
-package fr.dawan.projetLMT.entities;
+package fr.dawan.projetLMT.beans;
+
 import java.io.Serializable;
 import java.time.LocalDate;
-
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-@Entity
-@Table(name="t_member")
-public class Member implements Serializable{
-	
-	 /**
-	 * 
-	 */
+import fr.dawan.projetLMT.entities.Genre;
+import fr.dawan.projetLMT.entities.Instrument;
+import fr.dawan.projetLMT.entities.Message;
+import fr.dawan.projetLMT.entities.Member.level;
+import fr.dawan.projetLMT.entities.Member.sex;
+
+public class MemberForm implements Serializable{
+
 	private static final long serialVersionUID = 1L;
-
-	public enum sex{			  
-		    m,
-		    f,
-		    other
-		  }
-	 public enum level{
-			beginner,
-			intermediate,
-			advanced,
-			professional
-	}
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
-	@Version
-	private int version;
+	private String id;
 	
 	private String firstname;
 		
 	private String lastname;
 	
-	private LocalDate birthday;
+	private String birthday;
 	
-	 private sex sexMember ;
+	private String sexMember ;
 	
 	private String email;
 	
 	private String password;
 	
-	private level levelMember;
+	private String levelMember;
 	
 	private String adress;
 	
-	private int zipCode;
+	private String zipCode;
 	
 	private String city;
 	
 	private String picture;
 	
 	private String resume;
-	
-	@ManyToMany(cascade=CascadeType.ALL)
-	private List<Instrument> instruments;
-	
-	@ManyToMany(cascade=CascadeType.ALL)
-	private List<Genre> genres;
-	
-
 
 	
 	
-	public Member() {
+	public MemberForm() {
 		super();
 	}
 
-	public Member(int id, int version, String firstname, String lastname, LocalDate birthday, sex sexMember,
-			String email, String password, level levelMember, String adress, int zipCode, String city, String picture,
-			String resume, List<Instrument> instruments, List<Genre> genres) {
+	public MemberForm(String id, String firstname, String lastname, String birthday, String sexMember, String email,
+			String password, String levelMember, String adress, String zipCode, String city, String picture,
+			String resume) {
 		super();
 		this.id = id;
-		this.version = version;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.birthday = birthday;
@@ -98,25 +70,14 @@ public class Member implements Serializable{
 		this.city = city;
 		this.picture = picture;
 		this.resume = resume;
-		this.instruments = instruments;
-		this.genres = genres;
-
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
-	}
-
-	public int getVersion() {
-		return version;
-	}
-
-	public void setVersion(int version) {
-		this.version = version;
 	}
 
 	public String getFirstname() {
@@ -135,19 +96,19 @@ public class Member implements Serializable{
 		this.lastname = lastname;
 	}
 
-	public LocalDate getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(LocalDate birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 
-	public sex getSexMember() {
+	public String getSexMember() {
 		return sexMember;
 	}
 
-	public void setSexMember(sex sexMember) {
+	public void setSexMember(String sexMember) {
 		this.sexMember = sexMember;
 	}
 
@@ -167,11 +128,11 @@ public class Member implements Serializable{
 		this.password = password;
 	}
 
-	public level getLevelmMember() {
+	public String getLevelMember() {
 		return levelMember;
 	}
 
-	public void setLevelmMember(level levelMember) {
+	public void setLevelMember(String levelMember) {
 		this.levelMember = levelMember;
 	}
 
@@ -183,11 +144,11 @@ public class Member implements Serializable{
 		this.adress = adress;
 	}
 
-	public int getZipCode() {
+	public String getZipCode() {
 		return zipCode;
 	}
 
-	public void setZipCode(int zipCode) {
+	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
 
@@ -214,22 +175,10 @@ public class Member implements Serializable{
 	public void setResume(String resume) {
 		this.resume = resume;
 	}
+	
+	
 
-	public List<Instrument> getInstruments() {
-		return instruments;
-	}
 
-	public void setInstruments(List<Instrument> instruments) {
-		this.instruments = instruments;
-	}
-
-	public List<Genre> getGenres() {
-		return genres;
-	}
-
-	public void setGenres(List<Genre> genres) {
-		this.genres = genres;
-	}
 	
 	
 	

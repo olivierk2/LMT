@@ -31,11 +31,13 @@ public class Message implements Serializable{
 	
 	private LocalDate dateMessage;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private Member sender;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	private Member receiver;
+	@ManyToOne
+	private Member reciever;
+	
+
 	
 	
 
@@ -43,14 +45,13 @@ public class Message implements Serializable{
 		super();
 	}
 
-	public Message(long id, int version, String content, LocalDate dateMessage, Member sender, Member receiver) {
+	public Message(long id, int version, String content, LocalDate dateMessage) {
 		super();
 		this.id = id;
 		this.version = version;
 		this.content = content;
 		this.dateMessage = dateMessage;
-		this.sender = sender;
-		this.receiver = receiver;
+
 	}
 
 	public long getId() {
@@ -84,23 +85,5 @@ public class Message implements Serializable{
 	public void setDateMessage(LocalDate dateMessage) {
 		this.dateMessage = dateMessage;
 	}
-
-	public Member getSender() {
-		return sender;
-	}
-
-	public void setSender(Member sender) {
-		this.sender = sender;
-	}
-
-	public Member getReceiver() {
-		return receiver;
-	}
-
-	public void setReceiver(Member receiver) {
-		this.receiver = receiver;
-	}
-	
-	
 
 }

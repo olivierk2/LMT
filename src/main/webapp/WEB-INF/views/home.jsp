@@ -6,9 +6,12 @@
 </head>
 <body>
 <h1>
-	Hello world!  
+	Love Me Tinder
 </h1>
-
+<h2>
+	Le site des amoureux de la musique
+</h2>
 <P>  The time on the server is ${serverTime}. </P>
+<a href= "">Inscription</a>
 </body>
 </html>
