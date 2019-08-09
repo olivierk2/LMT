@@ -72,10 +72,10 @@ public class Member implements Serializable{
 	@ManyToMany(cascade=CascadeType.ALL)
 	private List<Genre> genres;
 	
-	@OneToMany(mappedBy="sender" ,cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<Message> sentMessages;
 	
-	@OneToMany(mappedBy="receiver",cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<Message> recievedMessages;
 
 	
