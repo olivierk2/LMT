@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,13 +13,11 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 @Entity
-@Table(name="t_message")
-public class Message implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
+@Table(name="t_sharedlink")
+public class SharedLink {
+	
+	enum Link {youtube, facebook, twitter, instagram, snapchat, other }
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -28,28 +25,25 @@ public class Message implements Serializable{
 	@Version
 	private int version;
 	
-	@Column(length = 1000)
-	private String content;
+	private String linkName;
 	
-	private LocalDate dateMessage;
+	private String url;
 	
-	@ManyToOne
-	private Member sender;
+	private Link linkType;
 	
-	@ManyToOne
-	private Member reciever;
+	
 
-	public Message() {
+	public SharedLink() {
 		super();
 	}
 
-	public Message(long id, int version, String content, LocalDate dateMessage) {
+	public SharedLink(long id, int version, String linkName, String url, Link linkType) {
 		super();
 		this.id = id;
 		this.version = version;
-		this.content = content;
-		this.dateMessage = dateMessage;
-
+		this.linkName = linkName;
+		this.url = url;
+		this.linkType = linkType;
 	}
 
 	public long getId() {
@@ -68,20 +62,29 @@ public class Message implements Serializable{
 		this.version = version;
 	}
 
-	public String getContent() {
-		return content;
+	public String getLinkName() {
+		return linkName;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setLinkName(String linkName) {
+		this.linkName = linkName;
 	}
 
-	public LocalDate getDateMessage() {
-		return dateMessage;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setDateMessage(LocalDate dateMessage) {
-		this.dateMessage = dateMessage;
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
+	public Link getLinkType() {
+		return linkType;
+	}
+
+	public void setLinkType(Link linkType) {
+		this.linkType = linkType;
+	}
+
+	
 }

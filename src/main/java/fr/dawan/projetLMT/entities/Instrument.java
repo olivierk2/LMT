@@ -26,7 +26,7 @@ public class Instrument implements Serializable {
 	private int version;
 	
 	@Column(nullable = false, unique=true)
-	private String nameInstru;
+	private String instruName;
 	
 	@ManyToMany(mappedBy = "instruments")
     private List<Member> members;
@@ -37,11 +37,11 @@ public class Instrument implements Serializable {
 		super();
 	}
 
-	public Instrument(long id, int version, String nameInstru, List<Member> members) {
+	public Instrument(long id, int version, String instruName, List<Member> members) {
 		super();
 		this.id = id;
 		this.version = version;
-		this.nameInstru = nameInstru;
+		this.instruName = instruName;
 		this.members = members;
 	}
 
@@ -61,12 +61,12 @@ public class Instrument implements Serializable {
 		this.version = version;
 	}
 
-	public String getNameInstru() {
-		return nameInstru;
+	public String getInstruName() {
+		return instruName;
 	}
 
-	public void setNameInstru(String nameInstru) {
-		this.nameInstru = nameInstru;
+	public void setInstruName(String instruName) {
+		this.instruName = instruName;
 	}
 
 	public List<Member> getMembers() {

@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -64,6 +65,7 @@ public class Member implements Serializable{
 	
 	private String picture;
 	
+	@Column(length = 1000)
 	private String resume;
 	
 	@ManyToMany(cascade=CascadeType.ALL)
@@ -72,17 +74,17 @@ public class Member implements Serializable{
 	@ManyToMany(cascade=CascadeType.ALL)
 	private List<Genre> genres;
 	
-
-
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<SharedLink> sharedLinks;
 	
-	
+
 	public Member() {
 		super();
 	}
 
 	public Member(int id, int version, String firstname, String lastname, LocalDate birthday, sex sexMember,
 			String email, String password, level levelMember, String adress, int zipCode, String city, String picture,
-			String resume, List<Instrument> instruments, List<Genre> genres) {
+			String resume, List<Instrument> instruments, List<Genre> genres, List<SharedLink> sharedLinks) {
 		super();
 		this.id = id;
 		this.version = version;
@@ -100,7 +102,7 @@ public class Member implements Serializable{
 		this.resume = resume;
 		this.instruments = instruments;
 		this.genres = genres;
-
+		this.sharedLinks = sharedLinks;
 	}
 
 	public int getId() {
@@ -231,6 +233,21 @@ public class Member implements Serializable{
 		this.genres = genres;
 	}
 	
+	public level getLevelMember() {
+		return levelMember;
+	}
+
+	public void setLevelMember(level levelMember) {
+		this.levelMember = levelMember;
+	}
+
+	public List<SharedLink> getSharedLinks() {
+		return sharedLinks;
+	}
+
+	public void setSharedLinks(List<SharedLink> sharedLinks) {
+		this.sharedLinks = sharedLinks;
+	}
 	
 	
 }

@@ -26,7 +26,7 @@ public class Genre implements Serializable {
 	private int version;
 	
 	@Column(nullable = false, unique=true)
-	private String nameGenre;
+	private String genreName;
 	
 	@ManyToMany(mappedBy = "genres")
     private List<Member> members;
@@ -37,11 +37,11 @@ public class Genre implements Serializable {
 		super();
 	}
 
-	public Genre(long id, int version, String nameGenre, List<Member> members) {
+	public Genre(long id, int version, String genreName, List<Member> members) {
 		super();
 		this.id = id;
 		this.version = version;
-		this.nameGenre = nameGenre;
+		this.genreName = genreName;
 		this.members = members;
 	}
 
@@ -61,12 +61,12 @@ public class Genre implements Serializable {
 		this.version = version;
 	}
 
-	public String getNameGenre() {
-		return nameGenre;
+	public String getGenreName() {
+		return genreName;
 	}
 
-	public void setNameGenre(String nameGenre) {
-		this.nameGenre = nameGenre;
+	public void setGenreName(String genreName) {
+		this.genreName = genreName;
 	}
 
 	public List<Member> getMembers() {
