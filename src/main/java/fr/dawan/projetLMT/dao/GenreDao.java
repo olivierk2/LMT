@@ -20,5 +20,21 @@ public class GenreDao {
 			e.printStackTrace();
 		}
 	}
+	
+	public void delete(Genre style) {
+		try {
+			em.remove(style);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void update(Genre style) {
+		try {
+			em.merge(style);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }

@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import fr.dawan.projetLMT.beans.MemberForm;
+import fr.dawan.projetLMT.beans.UserForm;
 import fr.dawan.projetLMT.entities.Member;
 import fr.dawan.projetLMT.service.MemberService;
-
 
 
 @Controller
@@ -41,23 +41,24 @@ public class SignUpController {
 	}
 	
 	@PostMapping("/authentication")
-	public String authentication(@ModelAttribute("userBean") MemberForm memberForm, Model model, HttpSession session) {
-		String email =memberForm.getEmail();
+	public String authentication(@ModelAttribute("userBean") UserForm userForm, Model model, HttpSession session) {
+		String email =userForm.getEmail();
 		String msg = "";
 		Member u = null;
 		
 		if(email!= null && !email.isEmpty()) {
-			u= memberService.readByEmail(memberForm.getEmail());
+			u= memberService.readByEmail(userForm.getEmail());
 		} else {
 			msg = "Veuillez remplir le champ email";
 			model.addAttribute("msg", msg);
 			return "authenticate";	
 		}
 		
-		if(u != null && u.getPassword() != null && u.getPassword().equals(memberForm.getPassword())) {
+		// le membre existe		
+		if(u != null && u.getPassword() != null && u.getPassword().equals(userForm.getPassword())) {		
+			model.addAttribute("user", u);
+			return "welcome";
 			
-			
-			return "dashboard";
 		} else {
 			msg = "Couple login password incorrect";
 			model.addAttribute("msg", msg);
@@ -70,8 +71,8 @@ public class SignUpController {
 		// le resultat de la validation
 		// Rajouter aussi l'annotation @Valid sur le bean
 		@PostMapping("/authentication/avec/validation")
-		public String authentication(@Valid @ModelAttribute("memberBean") MemberForm memberForm,  BindingResult br, Model model, Locale locale, HttpSession session) {
-			String email =memberForm.getEmail();
+		public String authentication(@Valid @ModelAttribute("userBean") UserForm userForm,  BindingResult br, Model model, Locale locale, HttpSession session) {
+			String email =userForm.getEmail();
 			String msg = "";
 			Member u = null;
 			
@@ -80,9 +81,9 @@ public class SignUpController {
 			}
 			
 			
-			u = memberService.readByEmail(memberForm.getEmail());
+			u = memberService.readByEmail(userForm.getEmail());
 
-			if(u != null && u.getPassword() != null && u.getPassword().equals(memberForm.getPassword())) {
+			if(u != null && u.getPassword() != null && u.getPassword().equals(userForm.getPassword())) {
 				//session.setAttribute("role", u.getRole());
 				return "dashboard";
 			} else {
@@ -107,11 +108,32 @@ public class SignUpController {
 		model.addAttribute("msg", msg);
 		
 		return "authenticate";	
-		
+				
 	}
 	
+	@GetMapping("/signUp")
+	public String signUp(Model model)
+	{
+		
+		return "signUp";
+	}
+	
+	@PostMapping("/newMember")
+	public String createMember(@Valid @ModelAttribute("newBean") MemberForm memberForm,  BindingResult br, Model model, Locale locale, HttpSession session) {
+		
+		
+			Member u = new Member(0, 0, "vide", memberForm.getEmail(), null, null,memberForm.getPassword(), null, null, null,1, null, null, null, null, null, null);
+			memberService.create(u);
+				
+		model.addAttribute("member",u);
+		
+		return "authenticate";	
+		
+	}	
+	
+	
 	@ModelAttribute("userBean")
-	public MemberForm getUserForm() {
-		return new MemberForm();
+	public UserForm getUserForm() {
+		return new UserForm();
 	}
  }

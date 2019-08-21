@@ -14,7 +14,10 @@
 <P>  The time on the server is ${serverTime}. </P>
 
 <div>
-	<a href="${pageContext.request.contextPath}/signIn/display">S'authentifier</a>
+	<a href="${pageContext.request.contextPath}/signIn/display">Sign in (s'authentifier)</a>
+	<div>
+	<a href="${pageContext.request.contextPath}/member/display">Sign up</a>
+	</div>
 </div>
 </body>
 </html>
