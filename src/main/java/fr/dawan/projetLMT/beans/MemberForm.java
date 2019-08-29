@@ -2,6 +2,7 @@ package fr.dawan.projetLMT.beans;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,6 +15,7 @@ import javax.validation.constraints.Size;
 import fr.dawan.projetLMT.entities.Genre;
 import fr.dawan.projetLMT.entities.Instrument;
 import fr.dawan.projetLMT.entities.Message;
+import fr.dawan.projetLMT.entities.SharedLink;
 import fr.dawan.projetLMT.entities.Member.level;
 import fr.dawan.projetLMT.entities.Member.sex;
 
@@ -27,7 +29,7 @@ public class MemberForm implements Serializable{
 		
 	private String lastname;
 	
-	private String birthday;
+	private Date birthday;
 	
 	private String sexMember ;
 	
@@ -46,6 +48,13 @@ public class MemberForm implements Serializable{
 	private String picture;
 	
 	private String resume;
+	
+	private List<Instrument> instruments;
+	
+	private List<Genre> genres;
+	
+	private List<SharedLink> sharedLinks;
+	
 
 	
 	
@@ -53,9 +62,9 @@ public class MemberForm implements Serializable{
 		super();
 	}
 
-	public MemberForm(String id, String firstname, String lastname, String birthday, String sexMember, String email,
+	public MemberForm(String id, String firstname, String lastname, Date birthday, String sexMember, String email,
 			String password, String levelMember, String adress, String zipCode, String city, String picture,
-			String resume) {
+			String resume,Instrument listInstru,Genre listGenre,SharedLink listLink) {
 		super();
 		this.id = id;
 		this.firstname = firstname;
@@ -96,11 +105,11 @@ public class MemberForm implements Serializable{
 		this.lastname = lastname;
 	}
 
-	public String getBirthday() {
+	public Date getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(String birthday) {
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 
@@ -174,6 +183,30 @@ public class MemberForm implements Serializable{
 
 	public void setResume(String resume) {
 		this.resume = resume;
+	}
+
+	public List<Instrument> getInstruments() {
+		return instruments;
+	}
+
+	public void setInstruments(List<Instrument> instruments) {
+		this.instruments = instruments;
+	}
+
+	public List<Genre> getGenres() {
+		return genres;
+	}
+
+	public void setGenres(List<Genre> genres) {
+		this.genres = genres;
+	}
+
+	public List<SharedLink> getSharedLinks() {
+		return sharedLinks;
+	}
+
+	public void setSharedLinks(List<SharedLink> sharedLinks) {
+		this.sharedLinks = sharedLinks;
 	}
 	
 	

@@ -1,7 +1,7 @@
 package fr.dawan.projetLMT.entities;
 import java.io.Serializable;
 import java.time.LocalDate;
-
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -47,7 +47,7 @@ public class Member implements Serializable{
 		
 	private String lastname;
 	
-	private LocalDate birthday;
+	private Date birthday;
 	
 	 private sex sexMember ;
 	
@@ -82,7 +82,7 @@ public class Member implements Serializable{
 		super();
 	}
 
-	public Member(int id, int version, String firstname, String lastname, LocalDate birthday, sex sexMember,
+	public Member(int id, int version, String firstname, String lastname, Date birthday, sex sexMember,
 			String email, String password, level levelMember, String adress, int zipCode, String city, String picture,
 			String resume, List<Instrument> instruments, List<Genre> genres, List<SharedLink> sharedLinks) {
 		super();
@@ -137,11 +137,11 @@ public class Member implements Serializable{
 		this.lastname = lastname;
 	}
 
-	public LocalDate getBirthday() {
+	public Date getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(LocalDate birthday) {
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 

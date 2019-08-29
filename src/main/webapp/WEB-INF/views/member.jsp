@@ -17,18 +17,22 @@
  
  <body>
  	
-  <form:form method="post" action="${pageContext.request.contextPath}/member/newMember" modelAttribute="newBean">
+  <form:form method="post" action="${pageContext.request.contextPath}/member/newMember" modelAttribute="newMember">
+  
 		<form:errors path="email" />Your email
 		<form:input path="email"/>
 		
-		<form:errors path="adress" />Your adress
-		<form:input path="adress"/>
-		
+		<form:errors path="password" />Your password
+		<form:input path="password"/>		
+	
 		<form:errors path="birthday" />Your birthday
-		<form:input path="birthday"/>
+		<form:input path="birthday" />
 		
 		<form:errors path="city" />Your city
 		<form:input path="city"/>
+		
+		<form:errors path="adress" />Your adress
+		<form:input path="adress"/>	
 		
 		<form:errors path="firstname" />Your firstname
 		<form:input path="firstname"/>
@@ -47,19 +51,18 @@
 		
 		<form:errors path="sexMember" />Your sex
 		<form:input path="sexMember"/>
-		
-		<form:errors path="levelMember" />Your level
-		<form:input path="levelMember"/>
-		
+				
 		<form:errors path="zipCode" />Your zipCode
-		<form:input path="zipCode"/>
+		<form:input path="zipCode"/>		
+						
+		<form:errors path="instruments" />Your instrument(s)
+		<form:input path="instruments" type="select"/>
+		Choisir un style ->
+		jazz : <form:checkbox path="genres" value="jazz"/>
+		rock : <form:checkbox path="genres" value="rock"/>
+		pop : <form:checkbox path="genres" value="pop"/>
+		soul : <form:checkbox path="genres" value="soul"/>
 		
-		<form:errors path="email" />Your adress
-		<form:input path="email"/>
-		
-		
-		<form:errors path="password" />Your password
-		<form:input path="password"/>
 		<input type="submit" value="Login">
 	</form:form>
 </body>
