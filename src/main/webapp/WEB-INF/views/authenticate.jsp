@@ -26,7 +26,8 @@
 		<div class="col-sm-4">
 			<div class="form-group row">
 				<form:form method="post"
-					action="${pageContext.request.contextPath}/signIn/authentication"
+					 action="${pageContext.request.contextPath}/signIn/test"
+					
 					modelAttribute="userBean">
 					<div class="">
 						<form:errors path="email" />

@@ -1,5 +1,6 @@
 package fr.dawan.projetLMT.controllers;
 
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
@@ -40,12 +41,25 @@ public class SignUpController {
 		return "authenticate";
 	}
 
+	@PostMapping("/test")
+	public String test(@ModelAttribute("userBean") UserForm userForm,Model model, HttpSession session) {
+				
+		List<Member> ul = memberService.readAll();
+		
+		
+		model.addAttribute("listu", ul);
+		return "test";
+
+		
+	}
+	
 	@PostMapping("/authentication")
 	public String authentication(@ModelAttribute("userBean") UserForm userForm, Model model, HttpSession session) {
 		String email =userForm.getEmail();
 		String msg = "";
-		Member u = null;
-
+		Member u= null;
+		
+				
 		if(email!= null && !email.isEmpty()) {
 			u= memberService.readByEmail(userForm.getEmail());
 		} else {
@@ -57,12 +71,13 @@ public class SignUpController {
 		// le membre existe		
 		if(u != null && u.getPassword() != null && u.getPassword().equals(userForm.getPassword())) {		
 			model.addAttribute("user", u);
-			return "test";
+			return "welcome";
 
 		} else {
-			msg = "Couple login password incorrect";
-			model.addAttribute("msg", msg);
-			return "authenticate";	
+			
+		msg = "Couple login password incorrect";
+		model.addAttribute("msg", msg);
+		return "authenticate";		
 		}
 	}
 
@@ -76,16 +91,19 @@ public class SignUpController {
 		String msg = "";
 		Member u = null;
 
+		model.addAttribute("msg", msg);
+		
 		if(br.hasErrors()) {
 			return "authenticate";
+			
 		}
 
-
+					
 		u = memberService.readByEmail(userForm.getEmail());
 
 		if(u != null && u.getPassword() != null && u.getPassword().equals(userForm.getPassword())) {
 			//session.setAttribute("role", u.getRole());
-			return "dashboard";
+			return "welcome";
 		} else {
 
 			msg = messageSource.getMessage("authentication.errors", null, locale);

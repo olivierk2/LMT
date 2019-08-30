@@ -44,7 +44,7 @@ public class Member implements Serializable{
 	private int version;
 	
 	private String firstname;
-		
+	
 	private String lastname;
 	
 	private Date birthday;

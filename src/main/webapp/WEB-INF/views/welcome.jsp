@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>test</title>
+<title>welcomet</title>
 </head>
 <body>
-<h1>WELCOME ${u.lastname}</h1>
+<h1>WELCOME ${member.lastname}  ${member.firstname}</h1>
 </body>
 </html>

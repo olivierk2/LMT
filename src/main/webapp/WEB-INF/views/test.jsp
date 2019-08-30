@@ -4,9 +4,21 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>TEST</title>
 </head>
 <body>
-<h1>WELCOME ${u.lastname}</h1>
+
+
+<c:forEach items="${listu}" var="u">
+				<tr>
+					<td>${listu}</td>
+			
+				
+					</tr>
+			</c:forEach>
+					 
+
+
+
 </body>
 </html>
