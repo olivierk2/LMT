@@ -42,6 +42,23 @@
 		
 		<form:errors path="levelMember" />Your level
 		<form:input path="levelMember"/>
+		<FORM NAME="form1" METHOD="post" ACTION="">
+
+			<SELECT NAME="sexMember">
+			
+			<OPTION VALUE="m" >
+			homme</OPTION>
+			
+			<OPTION VALUE="f"  >
+			femme</OPTION>
+			
+			<OPTION VALUE="other"  >
+			
+			other</OPTION>
+			
+			</SELECT>
+			
+			</FORM>
 		
 		<form:errors path="picture" />Your picture
 		<form:input path="picture"/>
@@ -49,9 +66,7 @@
 		<form:errors path="resume" />Your presentation
 		<form:input path="resume"/>
 		
-		<form:errors path="sexMember" />Your sex
-		<form:input path="sexMember"/>
-				
+					
 		<form:errors path="zipCode" />Your zipCode
 		<form:input path="zipCode"/>		
 						

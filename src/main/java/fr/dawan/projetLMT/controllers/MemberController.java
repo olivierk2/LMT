@@ -60,7 +60,8 @@ public class MemberController {
 				memberForm.getSharedLinks());
 		
 		memberService.create(uM);
-
+		
+		System.out.println(memberForm.getSexMember());
 		model.addAttribute("member",uM);
 
 		return "welcome";	
