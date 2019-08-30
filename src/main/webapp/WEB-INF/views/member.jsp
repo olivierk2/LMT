@@ -42,6 +42,7 @@
 		
 		<form:errors path="levelMember" />Your level
 		<form:input path="levelMember"/>
+		
 		<FORM NAME="form1" METHOD="post" ACTION="">
 
 			<SELECT NAME="sexMember">
