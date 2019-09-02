@@ -44,9 +44,10 @@ public class MemberController {
 		//DateTimeFormatter df = DateTimeFormatter.ofPattern("d-MM-yyyy");
 
 		Member uM = new Member(0, 0, 
-				memberForm.getFirstname(), memberForm.getLastname(), 
+				memberForm.getFirstname(),
+				memberForm.getLastname(), 
 				memberForm.getBirthday(), 
-				sex.valueOf(memberForm.getSexMember()),
+				memberForm.getSexMember(),
 				memberForm.getEmail(), 
 				memberForm.getPassword(),
 				Member.level.valueOf(memberForm.getLevelMember()), 

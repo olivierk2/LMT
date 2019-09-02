@@ -14,6 +14,7 @@ import javax.validation.constraints.Size;
 
 import fr.dawan.projetLMT.entities.Genre;
 import fr.dawan.projetLMT.entities.Instrument;
+import fr.dawan.projetLMT.entities.Member;
 import fr.dawan.projetLMT.entities.Message;
 import fr.dawan.projetLMT.entities.SharedLink;
 import fr.dawan.projetLMT.entities.Member.level;
@@ -31,7 +32,7 @@ public class MemberForm implements Serializable{
 	
 	private Date birthday;
 	
-	private String sexMember ;
+	private Member.sex sexMember ;
 	
 	private String email;
 	
@@ -62,7 +63,7 @@ public class MemberForm implements Serializable{
 		super();
 	}
 
-	public MemberForm(String id, String firstname, String lastname, Date birthday, String sexMember, String email,
+	public MemberForm(String id, String firstname, String lastname, Date birthday, Member.sex sexMember, String email,
 			String password, String levelMember, String adress, String zipCode, String city, String picture,
 			String resume,Instrument listInstru,Genre listGenre,SharedLink listLink) {
 		super();
@@ -113,11 +114,12 @@ public class MemberForm implements Serializable{
 		this.birthday = birthday;
 	}
 
-	public String getSexMember() {
+
+	public Member.sex getSexMember() {
 		return sexMember;
 	}
 
-	public void setSexMember(String sexMember) {
+	public void setSexMember(Member.sex sexMember) {
 		this.sexMember = sexMember;
 	}
 

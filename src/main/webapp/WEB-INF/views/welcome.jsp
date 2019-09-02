@@ -7,6 +7,6 @@
 <title>welcomet</title>
 </head>
 <body>
-<h1>WELCOME ${member.lastname}  ${member.firstname}</h1>
+<h1>WELCOME ${member.lastname} </h1>
 </body>
 </html>

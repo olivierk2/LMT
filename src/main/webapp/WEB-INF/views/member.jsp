@@ -43,23 +43,11 @@
 		<form:errors path="levelMember" />Your level
 		<form:input path="levelMember"/>
 		
-		<FORM NAME="form1" METHOD="post" ACTION="">
-
-			<SELECT NAME="sexMember">
-			
-			<OPTION VALUE="m" >
-			homme</OPTION>
-			
-			<OPTION VALUE="f"  >
-			femme</OPTION>
-			
-			<OPTION VALUE="other"  >
-			
-			other</OPTION>
-			
-			</SELECT>
-			
-			</FORM>
+		<form:select path="sexMember">Your sex
+		<form:option value="m>" label="man"></form:option>	
+		<form:option value="f>" label="woman"></form:option>	
+		<form:option value="other>" label="other"></form:option>		
+		</form:select>
 		
 		<form:errors path="picture" />Your picture
 		<form:input path="picture"/>
@@ -69,10 +57,12 @@
 		
 					
 		<form:errors path="zipCode" />Your zipCode
-		<form:input path="zipCode"/>		
-						
+		<form:input path="zipCode"/>
+				
 		<form:errors path="instruments" />Your instrument(s)
-		<form:input path="instruments" type="select"/>
+		<form:input path="instruments" />
+						
+		<form:input path="genres" type="select"/>
 		Choisir un style ->
 		jazz : <form:checkbox path="genres" value="jazz"/>
 		rock : <form:checkbox path="genres" value="rock"/>
@@ -81,5 +71,9 @@
 		
 		<input type="submit" value="Login">
 	</form:form>
+	
+	
+	
+	
 </body>
 </html>
