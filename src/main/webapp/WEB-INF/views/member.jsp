@@ -40,13 +40,17 @@
 		<form:errors path="lastname" />Your lastname
 		<form:input path="lastname"/>
 		
-		<form:errors path="levelMember" />Your level
-		<form:input path="levelMember"/>
+		<form:select path="levelMember">Your level
+		<form:option value="beginnner" label="beginner"></form:option>	
+		<form:option value="intermediate" label="intermediate"></form:option>	
+		<form:option value="advanced" label="advanced"></form:option>	
+		<form:option value="professional" label="pro"></form:option>	
+		</form:select>
 		
 		<form:select path="sexMember">Your sex
-		<form:option value="m>" label="man"></form:option>	
-		<form:option value="f>" label="woman"></form:option>	
-		<form:option value="other>" label="other"></form:option>		
+		<form:option value="M" label="man"></form:option>	
+		<form:option value="F" label="woman"></form:option>	
+		<form:option value="OTHER" label="other"></form:option>		
 		</form:select>
 		
 		<form:errors path="picture" />Your picture
@@ -62,12 +66,8 @@
 		<form:errors path="instruments" />Your instrument(s)
 		<form:input path="instruments" />
 						
-		<form:input path="genres" type="select"/>
-		Choisir un style ->
-		jazz : <form:checkbox path="genres" value="jazz"/>
-		rock : <form:checkbox path="genres" value="rock"/>
-		pop : <form:checkbox path="genres" value="pop"/>
-		soul : <form:checkbox path="genres" value="soul"/>
+		
+
 		
 		<input type="submit" value="Login">
 	</form:form>
