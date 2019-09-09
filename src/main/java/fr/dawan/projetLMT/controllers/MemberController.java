@@ -27,6 +27,7 @@ import fr.dawan.projetLMT.entities.Member.sex;
 import fr.dawan.projetLMT.entities.SharedLink;
 import fr.dawan.projetLMT.entities.Genre;
 import fr.dawan.projetLMT.service.MemberService;
+import fr.dawan.projetLMT.service.GenreService;
 
 @Controller 
 @RequestMapping("/member")
@@ -34,33 +35,28 @@ import fr.dawan.projetLMT.service.MemberService;
 public class MemberController {
 	@Autowired
 	MemberService memberService;
-
+	@Autowired
+	GenreService genreService;
 	@GetMapping("/display")
 	public String display(Model model){
-		model.addAttribute("listGenre", new ArrayList<Genre>());
 		model.addAttribute("newMember",new Member());
 		return "member";
 	}
 	@PostMapping("/newMember")
 	public String createMember(@Valid @ModelAttribute("newMember") Member member,  BindingResult br, Model model, Locale locale, HttpSession session) {
 		//DateTimeFormatter df = DateTimeFormatter.ofPattern("d-MM-yyyy");
-		Genre rock = new Genre();
-		rock.setGenreName("blues");
-		List<Genre> liste = new ArrayList<Genre>();
-		liste.add(rock);
-		System.out.println(member.getGenres());
-		member.setGenres(liste);
 		memberService.create(member);
+		List<Genre> genresInBase = genreService.readAll();
+		List<String> listGenres = new ArrayList<String>();
+		for(Genre genre : genresInBase)
+			listGenres.add(genre.getGenreName());
 		
-		System.out.println(member.getSexMember());
-
-		return "welcome";	
+		model.addAttribute("listVierge", new ArrayList<String>());
+		model.addAttribute("listGenres",listGenres);
+		return "choixgenre";	
 
 	}
 
 
-	@ModelAttribute("newMember")
-	public Member getUserForm() {
-		return new Member();
-	}
+
 }
