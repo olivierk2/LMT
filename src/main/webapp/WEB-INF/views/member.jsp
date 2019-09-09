@@ -40,13 +40,18 @@
 		<form:errors path="lastname" />Your lastname
 		<form:input path="lastname"/>
 		
-		<form:errors path="levelMember" />Your level
-		<form:input path="levelMember"/>
+			
+		<form:select path="levelMember">Your level
+		<form:option value="BEGINNER>" label="beginner"></form:option>	
+		<form:option value="INTERMEDIATE" label="intermediate"></form:option>	
+		<form:option value="ADVANCED" label="advanced"></form:option>	
+		<form:option value="PROFESSIONAL" label="professional"></form:option>		
+		</form:select>
 		
 		<form:select path="sexMember">Your sex
-		<form:option value="m>" label="man"></form:option>	
-		<form:option value="f>" label="woman"></form:option>	
-		<form:option value="other>" label="other"></form:option>		
+		<form:option value="M" label="man"></form:option>	
+		<form:option value="F" label="woman"></form:option>	
+		<form:option value="OTHER" label="other"></form:option>		
 		</form:select>
 		
 		<form:errors path="picture" />Your picture
@@ -59,17 +64,27 @@
 		<form:errors path="zipCode" />Your zipCode
 		<form:input path="zipCode"/>
 				
-		<form:errors path="instruments" />Your instrument(s)
-		<form:input path="instruments" />
+<%-- 		<form:errors path="instruments" />Your instrument(s) --%>
+<%-- 		<form:input path="instruments" /> --%>
 						
-		<form:input path="genres" type="select"/>
-		Choisir un style ->
-		jazz : <form:checkbox path="genres" value="jazz"/>
-		rock : <form:checkbox path="genres" value="rock"/>
-		pop : <form:checkbox path="genres" value="pop"/>
-		soul : <form:checkbox path="genres" value="soul"/>
+		<p>Choisir un style :</p>
+	
+ 	<c:forEach var="g" items="${listGenres}" varStatus="loopCounter">                    
+                
+      		 <tr>
+               <td><form:checkbox name="check" path ="genres" value="${g.getGenreName()}"/>${g.getGenreName()}</td>
+                  
+            </tr>
+            
+   </c:forEach>  
+   
+<%--        ${listVierge.setGenres(g.getGenreName()) }; --%>
+<%--        <input path="genre" type="checkbox" name="status" id="status" value="${g.getGenreName()}" ${posting.postingStatus=='Active'?'checked':''}>                     --%>
+    
 		
-		<input type="submit" value="Login">
+		 
+		
+		<input type="submit" value="Login">		
 	</form:form>
 	
 	

@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>welcomet</title>
+<title>welcome</title>
 </head>
 <body>
 <h1>WELCOME ${member.lastname} </h1>
+String[] valeurs = request.getParameterValues("check");
 </body>
 </html>

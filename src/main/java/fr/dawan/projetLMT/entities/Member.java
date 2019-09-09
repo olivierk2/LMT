@@ -30,10 +30,10 @@ public class Member implements Serializable{
 		    OTHER
 		  }
 	 public enum level{
-			beginner,
-			intermediate,
-			advanced,
-			professional
+			BEGINNER,
+			INTERMEDIATE,
+			ADVANCED,
+			PROFESSIONAL
 	}
 	
 	@Id
@@ -49,7 +49,7 @@ public class Member implements Serializable{
 	
 	private Date birthday;
 	
-	 private sex sexMember ;
+	private sex sexMember ;
 	
 	private String email;
 	
@@ -69,10 +69,10 @@ public class Member implements Serializable{
 	private String resume;
 	
 	@ManyToMany(cascade=CascadeType.ALL)
-	private List<Instrument> instruments;
+	private List<Instrument> instruments;	
 	
 	@ManyToMany(cascade=CascadeType.ALL)
-	private List<Genre> genres;
+	private List<String> genres;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<SharedLink> sharedLinks;
@@ -84,7 +84,7 @@ public class Member implements Serializable{
 
 	public Member(int id, int version, String firstname, String lastname, Date birthday, sex sexMember,
 			String email, String password, level levelMember, String adress, int zipCode, String city, String picture,
-			String resume, List<Instrument> instruments, List<Genre> genres, List<SharedLink> sharedLinks) {
+			String resume, List<Instrument> instruments, List<String> genres, List<SharedLink> sharedLinks) {
 		super();
 		this.id = id;
 		this.version = version;
@@ -225,11 +225,11 @@ public class Member implements Serializable{
 		this.instruments = instruments;
 	}
 
-	public List<Genre> getGenres() {
+	public List<String> getGenres() {
 		return genres;
 	}
 
-	public void setGenres(List<Genre> genres) {
+	public void setGenres(List<String> genres) {
 		this.genres = genres;
 	}
 	

@@ -3,12 +3,12 @@ package fr.dawan.projetLMT.entities;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -23,16 +23,15 @@ public class Genre implements Serializable {
 	private long id;
 	
 	@Version
-	private int version;
-	
-	@Column(nullable = false, unique=true)
+	private int version=5;
+
+		
 	private String genreName;
+	 
 	
-	@ManyToMany(mappedBy = "genres")
+	@OneToMany(mappedBy = "genres")
     private List<Member> members;
 	
-	
-
 	public Genre() {
 		super();
 	}
@@ -66,7 +65,7 @@ public class Genre implements Serializable {
 	}
 
 	public void setGenreName(String genreName) {
-		this.genreName = genreName;
+		genreName = genreName;
 	}
 
 	public List<Member> getMembers() {

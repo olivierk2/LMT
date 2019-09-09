@@ -17,6 +17,7 @@ import fr.dawan.projetLMT.entities.Instrument;
 import fr.dawan.projetLMT.entities.Member;
 import fr.dawan.projetLMT.entities.Message;
 import fr.dawan.projetLMT.entities.SharedLink;
+import fr.dawan.projetLMT.service.GenreService;
 import fr.dawan.projetLMT.entities.Member.level;
 import fr.dawan.projetLMT.entities.Member.sex;
 
@@ -38,7 +39,7 @@ public class MemberForm implements Serializable{
 	
 	private String password;
 	
-	private String levelMember;
+	private level levelMember;
 	
 	private String adress;
 	
@@ -52,7 +53,7 @@ public class MemberForm implements Serializable{
 	
 	private List<Instrument> instruments;
 	
-	private List<Genre> genres;
+	private List<Genre> genre;
 	
 	private List<SharedLink> sharedLinks;
 	
@@ -64,8 +65,8 @@ public class MemberForm implements Serializable{
 	}
 
 	public MemberForm(String id, String firstname, String lastname, Date birthday, Member.sex sexMember, String email,
-			String password, String levelMember, String adress, String zipCode, String city, String picture,
-			String resume,Instrument listInstru,Genre listGenre,SharedLink listLink) {
+			String password, level levelMember, String adress, String zipCode, String city, String picture,
+			String resume,List<Instrument> listInstru,List<Genre> genre,List<SharedLink> listLink) {
 		super();
 		this.id = id;
 		this.firstname = firstname;
@@ -80,6 +81,10 @@ public class MemberForm implements Serializable{
 		this.city = city;
 		this.picture = picture;
 		this.resume = resume;
+		this.instruments=listInstru;
+		this.genre= genre;
+		this.sharedLinks=listLink;
+		
 	}
 
 	public String getId() {
@@ -139,11 +144,11 @@ public class MemberForm implements Serializable{
 		this.password = password;
 	}
 
-	public String getLevelMember() {
+	public Member.level getLevelMember() {
 		return levelMember;
 	}
 
-	public void setLevelMember(String levelMember) {
+	public void setLevelMember(Member.level levelMember) {
 		this.levelMember = levelMember;
 	}
 
@@ -193,14 +198,14 @@ public class MemberForm implements Serializable{
 
 	public void setInstruments(List<Instrument> instruments) {
 		this.instruments = instruments;
+	}	
+
+	public List<Genre> getGenre() {
+		return genre;
 	}
 
-	public List<Genre> getGenres() {
-		return genres;
-	}
-
-	public void setGenres(List<Genre> genres) {
-		this.genres = genres;
+	public void setGenre(List<Genre> list) {
+		this.genre = list;
 	}
 
 	public List<SharedLink> getSharedLinks() {
