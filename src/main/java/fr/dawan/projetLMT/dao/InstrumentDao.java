@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import fr.dawan.projetLMT.entities.Instrument;
 import fr.dawan.projetLMT.entities.Member;;
 
+@Repository
 public class InstrumentDao {
 	
 	@PersistenceContext 

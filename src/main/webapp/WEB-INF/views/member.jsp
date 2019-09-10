@@ -64,26 +64,20 @@
 		<form:errors path="zipCode" />Your zipCode
 		<form:input path="zipCode"/>
 				
-<%-- 		<form:errors path="instruments" />Your instrument(s) --%>
-<%-- 		<form:input path="instruments" /> --%>
-						
+		
+		<p>Choisir un instrument :</p>
+	
+ 		<c:forEach var="inst" items="${listInstru}">
+        <form:checkbox path="instruments" value="${inst.id}" label="${inst.instruName}" />
+    	</c:forEach>
+    	 				
 		<p>Choisir un style :</p>
 	
- 	<c:forEach var="g" items="${listGenres}" varStatus="loopCounter">                    
-                
-      		 <tr>
-               <td><form:checkbox name="check" path ="genres" value="${g.getGenreName()}"/>${g.getGenreName()}</td>
-                  
-            </tr>
-            
-   </c:forEach>  
+ 		<c:forEach var="genre" items="${listGenres}">
+        <form:checkbox path="genres" value="${genre.genreName}" label="${genre.genreName}" />
+    	</c:forEach> 
    
-<%--        ${listVierge.setGenres(g.getGenreName()) }; --%>
-<%--        <input path="genre" type="checkbox" name="status" id="status" value="${g.getGenreName()}" ${posting.postingStatus=='Active'?'checked':''}>                     --%>
-    
-		
-		 
-		
+
 		<input type="submit" value="Login">		
 	</form:form>
 	

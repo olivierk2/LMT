@@ -51,6 +51,12 @@ public class GenreService {
 	public Genre readById(long id) {
 		return genreDao.readById(id);
 	}
+	
+	
+	@Transactional
+	public Genre readByName(String name) {
+		return genreDao.readByName(name);
+	}
 
 	
 	

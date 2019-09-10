@@ -1,4 +1,5 @@
 package fr.dawan.projetLMT.controllers;
+
 import java.sql.Array;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -8,10 +9,12 @@ import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,9 +35,9 @@ import fr.dawan.projetLMT.entities.Member.sex;
 import fr.dawan.projetLMT.entities.SharedLink;
 import fr.dawan.projetLMT.service.GenreService;
 import fr.dawan.projetLMT.service.MemberService;
+import fr.dawan.projetLMT.service.InstrumentService;
 
-
-@Controller 
+@Controller
 @RequestMapping("/member")
 
 public class MemberController {
@@ -42,60 +45,61 @@ public class MemberController {
 	MemberService memberService;
 	@Autowired
 	private GenreService genreService;
+	@Autowired
+	private InstrumentService instrumentService;
 
 	@GetMapping("/display")
-	public String display(Model model)
-	{
-		
-	List<Genre> listG = genreService.readAll();
-	List<Member> listU = memberService.readAll();
-	
-//		for (Genre genre : listG) {
-//			
-//			System.out.println("GenreName: " + g.getGenreName());
-//		
-//		}
-		
-		model.addAttribute("listGenres",listG);
-		model.addAttribute("newMember",new Member());
-		model.addAttribute("listVierge",new Genre());
-	
+	public String display(Model model) {
+
+		List<Genre> listG = genreService.readAll();
+		List<Member> listU = memberService.readAll();
+		List<Instrument> listInstru = instrumentService.readAll();
+
+		model.addAttribute("listMembres", listU);
+		model.addAttribute("listGenres", listG);
+		model.addAttribute("newMember", new Member());
+		model.addAttribute("listInstru", listInstru);
+
 		return "member";
 	}
-		
-		
-	@PostMapping("/newMember")
-	public String createMember(@Valid @ModelAttribute("newMember") Member member,@ModelAttribute("listGenres") List<String> genre,BindingResult br, Model model, Locale locale, HttpSession session) {
-		//DateTimeFormatter df = DateTimeFormatter.ofPattern("d-MM-yyyy");
-		
-		
-		member.setGenres(genre);
-//		
-//		Member uM = new Member(0, 0, 
-//				memberForm.getFirstname(),
-//				memberForm.getLastname(), 
-//				memberForm.getBirthday(), 
-//				memberForm.getSexMember(),
-//				memberForm.getEmail(), 
-//				memberForm.getPassword(),
-//				memberForm.getLevelMember(), 
-//				memberForm.getAdress(), 
-//				Integer.parseInt(memberForm.getZipCode()), 
-//				memberForm.getCity(), 
-//				memberForm.getPicture(),
-//				memberForm.getResume(), 
-//				memberForm.getInstruments(),
-//				
-//				memberForm.getGenre(),				
-//				
-//				memberForm.getSharedLinks());
-		
-		memberService.create(member);		
-		model.addAttribute("newMember",member.getFirstname());
-		return "welcome";	
+	
+	@GetMapping("/displayMusicians")
+	public String findAmember(Model model) {
+		List<Member> listU = memberService.readAll();
+		model.addAttribute("listMembres", listU);
 
+		return "findMusicians";
 	}
 
+	@PostMapping("/newMember")
+	public String createMember(@Valid @ModelAttribute("newMember") Member member, BindingResult br, Model model,
+			Locale locale, HttpSession session, HttpServletRequest req) {
+
+		// creation d'une liste pour récuperer les instruments par id(foreach)
+		List<Instrument> instrus = new ArrayList<Instrument>();
+
+		for (String idInstru : req.getParameterValues("instruments")) {
+			Instrument instr = instrumentService.readById((Long.parseLong(idInstru))); // récupérer le genre par son nom
+			instrus.add(instr);
+		}
+
+		member.setInstruments(instrus);
+
+		// Recuperation des genres
+
+		List<Genre> genres = new ArrayList<Genre>();
+
+		for (String nom : req.getParameterValues("genres")) {
+			Genre genrer = genreService.readByName(nom); // récupérer le genre par son nom
+			genres.add(genrer);
+		}
+
+		member.setGenres(genres);
+		memberService.create(member);
+		Member user= memberService.readByEmail(member.getEmail());
+		model.addAttribute("lastName", user.getLastname());
+		return "welcome";
+	}
 
 	@ModelAttribute("newMember")
 	public Member getUserForm() {

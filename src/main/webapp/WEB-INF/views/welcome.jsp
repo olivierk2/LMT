@@ -7,7 +7,9 @@
 <title>welcome</title>
 </head>
 <body>
-<h1>WELCOME ${member.lastname} </h1>
-String[] valeurs = request.getParameterValues("check");
+<h1>WELCOME ${lastName} </h1>
+<a href="${pageContext.request.contextPath}/member/displayMusicians">Rechercher un musicien</a>
+
+
 </body>
 </html>

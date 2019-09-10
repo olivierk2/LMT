@@ -29,7 +29,7 @@ public class Genre implements Serializable {
 	private String genreName;
 	 
 	
-	@OneToMany(mappedBy = "genres")
+	@ManyToMany(mappedBy = "genres")
     private List<Member> members;
 	
 	public Genre() {

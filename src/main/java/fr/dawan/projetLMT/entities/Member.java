@@ -68,11 +68,11 @@ public class Member implements Serializable{
 	@Column(length = 1000)
 	private String resume;
 	
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany
 	private List<Instrument> instruments;	
 	
-	@ManyToMany(cascade=CascadeType.ALL)
-	private List<String> genres;
+	@ManyToMany
+	private List<Genre> genres;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<SharedLink> sharedLinks;
@@ -84,7 +84,7 @@ public class Member implements Serializable{
 
 	public Member(int id, int version, String firstname, String lastname, Date birthday, sex sexMember,
 			String email, String password, level levelMember, String adress, int zipCode, String city, String picture,
-			String resume, List<Instrument> instruments, List<String> genres, List<SharedLink> sharedLinks) {
+			String resume, List<Instrument> instruments, List<Genre> genres, List<SharedLink> sharedLinks) {
 		super();
 		this.id = id;
 		this.version = version;
@@ -225,11 +225,11 @@ public class Member implements Serializable{
 		this.instruments = instruments;
 	}
 
-	public List<String> getGenres() {
+	public List<Genre> getGenres() {
 		return genres;
 	}
 
-	public void setGenres(List<String> genres) {
+	public void setGenres(List<Genre> genres) {
 		this.genres = genres;
 	}
 	

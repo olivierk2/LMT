@@ -102,6 +102,8 @@
 		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
 		<beans:property name="defaultLocale" value="fr" />
 	</beans:bean>
+	
+	
 
 
 </beans:beans>

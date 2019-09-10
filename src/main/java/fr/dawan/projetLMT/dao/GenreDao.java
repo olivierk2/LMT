@@ -56,6 +56,14 @@ public class GenreDao {
 			return null;
 		}
 	}
+	public Genre readByName(String name) {
+		try {			
+			return (Genre) em.createQuery("From Genre WHERE genreName= :name").setParameter("name", name).getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 	public long count()
 	{
