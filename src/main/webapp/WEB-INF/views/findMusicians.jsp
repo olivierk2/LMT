@@ -1,5 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page session="false" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,15 +24,17 @@
 	<c:forEach var="user" items="${listMembres}">
 		<div class="card" style="width: 18rem;">
 			<img src="..." class="card-img-top" alt="...">
-			<div class="card-body">
-				<h5 class="card-title">${user.firstName}</h5>
-				<p class="card-text">Some quick example text to build on the
-					card title and make up the bulk of the card's content.</p>
-				<a href="#" class="btn btn-primary">Go somewhere</a>
+			<div class="card-body">			
+				<h3 class="card-title">${user.firstname} </h3>
+				<h4 class="card-title">${user.city}</h4>
+				<% 
+				int age = dateOfBirth.until(now).getYears();%>
+				<h5><fmt:formatDate value="${user.birthday}" pattern="yyyy" /></h5>
+				<p class="card-text">${user.resume}</p>
+				<a href="#" class="btn btn-primary">Discuter</a>
 			</div>
 		</div>
 	</c:forEach>
-
 
 
 </body>

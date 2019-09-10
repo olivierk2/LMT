@@ -62,13 +62,14 @@ public class MemberController {
 
 		return "member";
 	}
-	
+
 	@GetMapping("/displayMusicians")
 	public String findAmember(Model model) {
+		
 		List<Member> listU = memberService.readAll();
 		model.addAttribute("listMembres", listU);
-
 		return "findMusicians";
+
 	}
 
 	@PostMapping("/newMember")
@@ -79,7 +80,8 @@ public class MemberController {
 		List<Instrument> instrus = new ArrayList<Instrument>();
 
 		for (String idInstru : req.getParameterValues("instruments")) {
-			Instrument instr = instrumentService.readById((Long.parseLong(idInstru))); // récupérer le genre par son nom
+			Instrument instr = instrumentService.readById((Long.parseLong(idInstru))); // récupérer le genre par son
+																						// nom
 			instrus.add(instr);
 		}
 
@@ -96,7 +98,7 @@ public class MemberController {
 
 		member.setGenres(genres);
 		memberService.create(member);
-		Member user= memberService.readByEmail(member.getEmail());
+		Member user = memberService.readByEmail(member.getEmail());
 		model.addAttribute("lastName", user.getLastname());
 		return "welcome";
 	}
