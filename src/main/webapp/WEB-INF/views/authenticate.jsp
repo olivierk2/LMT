@@ -26,8 +26,7 @@
 		<div class="col-sm-4">
 			<div class="form-group row">
 				<form:form method="post"
-					 action="${pageContext.request.contextPath}/signIn/test"
-					
+					action="${pageContext.request.contextPath}/signIn/authentication"
 					modelAttribute="userBean">
 					<div class="">
 						<form:errors path="email" />
@@ -43,6 +42,7 @@
 				<div>
 					<a href="${pageContext.request.contextPath}">Home</a>
 				</div>
+				
 
 			</div>
 			<div class="col-sm-4"></div>

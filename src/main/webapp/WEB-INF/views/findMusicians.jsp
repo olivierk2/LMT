@@ -2,7 +2,8 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
+<%@ page import="java.util.Date"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,19 +22,24 @@
 <title>Rock it</title>
 </head>
 <body>
+<%--     <form action="savefile" method="post" enctype="multipart/form-data"> --%>
+<!--     Select File: <input type="file" name="file"/> -->
+<!--     <input type="submit" value="Upload File"/> -->
+<%--     </form> --%>
+    
 	<c:forEach var="user" items="${listMembres}">
 		<div class="card" style="width: 18rem;">
 			<img src="..." class="card-img-top" alt="...">
 			<div class="card-body">			
 				<h3 class="card-title">${user.firstname} </h3>
 				<h4 class="card-title">${user.city}</h4>
-				<% 
-				int age = dateOfBirth.until(now).getYears();%>
-				<h5><fmt:formatDate value="${user.birthday}" pattern="yyyy" /></h5>
+				
+				<h5>${user.age}</h5>
 				<p class="card-text">${user.resume}</p>
 				<a href="#" class="btn btn-primary">Discuter</a>
 			</div>
 		</div>
+		
 	</c:forEach>
 
 

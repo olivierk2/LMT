@@ -2,6 +2,9 @@ package fr.dawan.projetLMT.controllers;
 
 import java.sql.Array;
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -65,9 +68,18 @@ public class MemberController {
 
 	@GetMapping("/displayMusicians")
 	public String findAmember(Model model) {
+
+		List<Member> listMembers = memberService.readAll();
 		
-		List<Member> listU = memberService.readAll();
-		model.addAttribute("listMembres", listU);
+		for (Member member : listMembers) {
+			LocalDate birth = member.getBirthday().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+			Period age = Period.between(birth, LocalDate.now());
+			member.setAge(age.getYears());
+		}
+		
+		model.addAttribute("listMembres", listMembers);
+
 		return "findMusicians";
 
 	}

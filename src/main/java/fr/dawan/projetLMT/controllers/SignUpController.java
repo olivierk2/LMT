@@ -56,7 +56,7 @@ public class SignUpController {
 		// le membre existe
 		if (u != null && u.getPassword() != null && u.getPassword().equals(userForm.getPassword())) {
 			model.addAttribute("user", u);
-			return "welcome";
+			return "redirect:/member/displayMusicians";
 
 		} else {
 
@@ -72,33 +72,7 @@ public class SignUpController {
 	// contient
 	// le resultat de la validation
 	// Rajouter aussi l'annotation @Valid sur le bean
-	@PostMapping("/authentication/avec/validation")
-	public String authentication(@Valid @ModelAttribute("userBean") UserForm userForm, BindingResult br, Model model,
-			Locale locale, HttpSession session) {
-		String email = userForm.getEmail();
-		String msg = "";
-		Member u = null;
-
-		model.addAttribute("msg", msg);
-
-		if (br.hasErrors()) {
-			return "authenticate";
-
-		}
-
-		u = memberService.readByEmail(userForm.getEmail());
-
-		if (u != null && u.getPassword() != null && u.getPassword().equals(userForm.getPassword())) {
-			// session.setAttribute("role", u.getRole());
-			return "welcome";
-		} else {
-
-			msg = messageSource.getMessage("authentication.errors", null, locale);
-			// msg = "Couple login password incorrect";
-			model.addAttribute("msg", msg);
-			return "authenticate";
-		}
-	}
+	//	
 
 	@GetMapping("/load")
 	public String load(Model model) {

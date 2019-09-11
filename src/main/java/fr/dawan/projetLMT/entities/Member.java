@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 
 @Entity
@@ -65,6 +66,9 @@ public class Member implements Serializable{
 	
 	private String picture;
 	
+	@Transient
+	private int age;
+
 	@Column(length = 1000)
 	private String resume;
 	
@@ -247,6 +251,14 @@ public class Member implements Serializable{
 
 	public void setSharedLinks(List<SharedLink> sharedLinks) {
 		this.sharedLinks = sharedLinks;
+	}
+	
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
 	}
 	
 	
