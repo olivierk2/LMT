@@ -87,7 +87,8 @@ public class MemberController {
 	@PostMapping("/newMember")
 	public String createMember(@Valid @ModelAttribute("newMember") Member member, BindingResult br, Model model,
 			Locale locale, HttpSession session, HttpServletRequest req) {
-
+		if(member!=null)
+			session.setAttribute("nomSession",member.getFirstname());
 		// creation d'une liste pour récuperer les instruments par id(foreach)
 		List<Instrument> instrus = new ArrayList<Instrument>();
 
@@ -112,6 +113,7 @@ public class MemberController {
 		memberService.create(member);
 		Member user = memberService.readByEmail(member.getEmail());
 		model.addAttribute("lastName", user.getLastname());
+		model.addAttribute("session", user.getLastname());
 		return "welcome";
 	}
 

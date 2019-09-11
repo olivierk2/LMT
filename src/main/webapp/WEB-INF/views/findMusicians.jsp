@@ -22,11 +22,15 @@
 <title>Rock it</title>
 </head>
 <body>
+<%String userName = (String) session.getAttribute("nomSession"); 
+
+%>
 <%--     <form action="savefile" method="post" enctype="multipart/form-data"> --%>
 <!--     Select File: <input type="file" name="file"/> -->
 <!--     <input type="submit" value="Upload File"/> -->
 <%--     </form> --%>
-    
+    <h1>
+    <%= userName %></h1>
 	<c:forEach var="user" items="${listMembres}">
 		<div class="card" style="width: 18rem;">
 			<img src="..." class="card-img-top" alt="...">
@@ -34,7 +38,7 @@
 				<h3 class="card-title">${user.firstname} </h3>
 				<h4 class="card-title">${user.city}</h4>
 				
-				<h5>${user.age}</h5>
+				<h5>${user.age}ans</h5>
 				<p class="card-text">${user.resume}</p>
 				<a href="#" class="btn btn-primary">Discuter</a>
 			</div>
