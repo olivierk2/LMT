@@ -7,6 +7,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<base href="<%=request.getScheme() + "://"
+         + request.getServerName() + ":"
+         + request.getServerPort()
+         + request.getContextPath() + "/"
+         %>" />
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
@@ -29,12 +34,12 @@
 <!--     Select File: <input type="file" name="file"/> -->
 <!--     <input type="submit" value="Upload File"/> -->
 <%--     </form> --%>
-    <h1>
-    <%= userName %></h1>
+    <h1><%= userName %></h1>
 	<c:forEach var="user" items="${listMembres}">
 		<div class="card" style="width: 18rem;">
-			<img src="..." class="card-img-top" alt="...">
-			<div class="card-body">			
+			
+			<div class="card-body">	
+			<img src="${user.picture}" class="card-img-top" alt="..." >		
 				<h3 class="card-title">${user.firstname} </h3>
 				<h4 class="card-title">${user.city}</h4>
 				
@@ -42,10 +47,11 @@
 				<p class="card-text">${user.resume}</p>
 				<a href="#" class="btn btn-primary">Discuter</a>
 			</div>
+			
 		</div>
-		
+			
 	</c:forEach>
-
+<img src="C:\JAVA\workspace-lmt\projetLMT\src\main\webapp\ressources\images\madonna.jpeg" class="card-img-top" alt="...">		
 
 </body>
 </html>

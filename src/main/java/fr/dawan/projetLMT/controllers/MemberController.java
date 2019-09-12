@@ -40,6 +40,7 @@ import fr.dawan.projetLMT.service.GenreService;
 import fr.dawan.projetLMT.service.MemberService;
 import fr.dawan.projetLMT.service.InstrumentService;
 
+
 @Controller
 @RequestMapping("/member")
 
@@ -50,7 +51,7 @@ public class MemberController {
 	private GenreService genreService;
 	@Autowired
 	private InstrumentService instrumentService;
-
+	
 	@GetMapping("/display")
 	public String display(Model model) {
 
