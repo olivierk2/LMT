@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import fr.dawan.projetLMT.entities.Instrument;
 import fr.dawan.projetLMT.entities.Member;
-import fr.dawan.projetLMT.entities.Genre;;;
+import fr.dawan.projetLMT.entities.Genre;
 
 @Repository
 public class GenreDao {

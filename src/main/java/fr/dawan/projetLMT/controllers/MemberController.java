@@ -36,10 +36,12 @@ import fr.dawan.projetLMT.entities.Instrument;
 import fr.dawan.projetLMT.entities.Member;
 import fr.dawan.projetLMT.entities.Member.sex;
 import fr.dawan.projetLMT.entities.SharedLink;
-import fr.dawan.projetLMT.service.GenreService;
-import fr.dawan.projetLMT.service.MemberService;
-import fr.dawan.projetLMT.service.InstrumentService;
 
+import fr.dawan.projetLMT.service.GenreService;
+
+import fr.dawan.projetLMT.service.MemberService;
+
+import fr.dawan.projetLMT.service.InstrumentService;
 
 @Controller
 @RequestMapping("/member")
@@ -48,11 +50,14 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 	@Autowired
+
 	private GenreService genreService;
 	@Autowired
 	private InstrumentService instrumentService;
-	
+
+
 	@GetMapping("/display")
+
 	public String display(Model model) {
 
 		List<Genre> listG = genreService.readAll();
@@ -64,11 +69,15 @@ public class MemberController {
 		model.addAttribute("newMember", new Member());
 		model.addAttribute("listInstru", listInstru);
 
+
 		return "member";
 	}
 
+
+
 	@GetMapping("/displayMusicians")
 	public String findAmember(Model model) {
+
 
 		List<Member> listMembers = memberService.readAll();
 		
@@ -84,6 +93,7 @@ public class MemberController {
 		return "findMusicians";
 
 	}
+	
 
 	@PostMapping("/newMember")
 	public String createMember(@Valid @ModelAttribute("newMember") Member member, BindingResult br, Model model,
@@ -118,8 +128,10 @@ public class MemberController {
 		return "welcome";
 	}
 
+
 	@ModelAttribute("newMember")
 	public Member getUserForm() {
 		return new Member();
 	}
+
 }

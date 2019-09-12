@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -49,13 +51,17 @@ public class Member implements Serializable{
 	private String lastname;
 	
 	private Date birthday;
-	
+
+	@Column(name="sexMember") 
+	@Enumerated(EnumType.STRING)
+
 	private sex sexMember ;
 	
 	private String email;
 	
 	private String password;
-	
+	@Column(name="levelMember") 
+	@Enumerated(EnumType.STRING)
 	private level levelMember;
 	
 	private String adress;

@@ -78,5 +78,4 @@ public class GenreService {
 		return genreDao.count();
 	}
 	
-	
 }
