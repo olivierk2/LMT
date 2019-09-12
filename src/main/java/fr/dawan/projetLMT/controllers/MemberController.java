@@ -39,23 +39,22 @@ public class MemberController {
 	GenreService genreService;
 	@GetMapping("/display")
 	public String display(Model model){
+	
+		
 		model.addAttribute("newMember",new Member());
+		model.addAttribute("listVierge", new ArrayList<Genre>());
 		return "member";
 	}
 	@PostMapping("/newMember")
-	public String createMember(@Valid @ModelAttribute("newMember") Member member,  BindingResult br, Model model, Locale locale, HttpSession session) {
+	public String createMember(@Valid @ModelAttribute("newMember") Member member, BindingResult br, Model model, Locale locale, HttpSession session) {
 		//DateTimeFormatter df = DateTimeFormatter.ofPattern("d-MM-yyyy");
 		memberService.create(member);
-		List<Genre> genresInBase = genreService.readAll();
-		List<String> listGenres = new ArrayList<String>();
-		for(Genre genre : genresInBase)
-			listGenres.add(genre.getGenreName());
-		
-		model.addAttribute("listVierge", new ArrayList<String>());
-		model.addAttribute("listGenres",listGenres);
-		return "choixgenre";	
+
+
+		return "welcome";	
 
 	}
+	
 
 
 

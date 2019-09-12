@@ -17,6 +17,7 @@
 	<a href="${pageContext.request.contextPath}/signIn/display">Sign in (s'authentifier)</a>
 	<div>
 	<a href="${pageContext.request.contextPath}/member/display">Sign up</a>
+	<br><a href="${pageContext.request.contextPath}/localize/display">click here to find love</a>
 	</div>
 </div>
 </body>

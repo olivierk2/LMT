@@ -15,7 +15,10 @@
                   
                 
       		 
-               <br><form:checkboxes path="listVierge" items="${listGenres}"/>
+       <c:forEach var="genre" items="${genres}">
+		<form:checkbox path="listeVierge" value="${genre.genreName}" label="${genre.genreName}" />
+		<br>
+	</c:forEach>
                   
            
             
