@@ -1,6 +1,5 @@
 package fr.dawan.projetLMT.entities;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.Version;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="t_member")
@@ -39,7 +40,7 @@ public class Member implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 	
 	@Version
 	private int version;
@@ -48,6 +49,7 @@ public class Member implements Serializable{
 	
 	private String lastname;
 	
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private Date birthday;
 	
 	private sex sexMember ;
@@ -109,7 +111,7 @@ public class Member implements Serializable{
 		this.sharedLinks = sharedLinks;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 

@@ -17,14 +17,17 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import fr.dawan.projetLMT.beans.MemberForm;
@@ -63,6 +66,7 @@ public class MemberController {
 		model.addAttribute("listGenres", listG);
 		model.addAttribute("newMember", new Member());
 		model.addAttribute("listInstru", listInstru);
+		model.addAttribute("defautltDate", LocalDate.now());
 
 		return "member";
 	}
@@ -72,6 +76,7 @@ public class MemberController {
 
 		List<Member> listMembers = memberService.readAll();
 		
+		
 		for (Member member : listMembers) {
 			LocalDate birth = member.getBirthday().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
@@ -80,14 +85,24 @@ public class MemberController {
 		}
 		
 		model.addAttribute("listMembres", listMembers);
-
+		
 		return "findMusicians";
 
 	}
+	//read by id
+	@GetMapping("/readById/{id}")
+	public Object readById(@PathVariable("id") long id,Model model) {
+		Member mId = memberService.readById(id);
+		System.out.println(mId);
+		
+		return display(model);
+	}
 
 	@PostMapping("/newMember")
-	public String createMember(@Valid @ModelAttribute("newMember") Member member, BindingResult br, Model model,
+	public String createMember(@Valid @ModelAttribute("newMember") Member member,
+			BindingResult br, Model model,
 			Locale locale, HttpSession session, HttpServletRequest req) {
+		System.out.println("newMember : " + member.getBirthday());
 		if(member!=null)
 			session.setAttribute("nomSession",member.getFirstname());
 		// creation d'une liste pour récuperer les instruments par id(foreach)
@@ -102,20 +117,21 @@ public class MemberController {
 		member.setInstruments(instrus);
 
 		// Recuperation des genres
-
+		
 		List<Genre> genres = new ArrayList<Genre>();
 
 		for (String nom : req.getParameterValues("genres")) {
 			Genre genrer = genreService.readByName(nom); // récupérer le genre par son nom
 			genres.add(genrer);
 		}
-
+		
 		member.setGenres(genres);
 		memberService.create(member);
 		Member user = memberService.readByEmail(member.getEmail());
 		model.addAttribute("lastName", user.getLastname());
 		model.addAttribute("session", user.getLastname());
-		return "welcome";
+		model.addAttribute("id", user.getId());
+		return "upload";
 	}
 
 	@ModelAttribute("newMember")

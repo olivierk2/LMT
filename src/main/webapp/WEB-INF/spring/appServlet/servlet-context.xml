@@ -108,7 +108,12 @@
         <beans:property name="maxUploadSize"   value="20971520"></beans:property> <!-- 20Mo pour le fichier -->
         <beans:property name="maxInMemorySize" value="1048576"></beans:property>  <!-- 1Mo pour chaque partie -->
     </beans:bean>
-	
+<!-- Upload -->
+    <beans:bean id="fileUploader"
+        class="fr.dawan.projetLMT.entities.FileUploader">
+        <beans:property name="uploadDirectory" value="C:\tmp"></beans:property>
+        <beans:property name="prefix" value="upload_"></beans:property>
+    </beans:bean>
 
 
 </beans:beans>
